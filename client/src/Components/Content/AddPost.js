@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import { useDispatch } from "react-redux";
 import { addItems } from "../../actions/itemActions";
 import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 
 const AddPost = (props) => {
   const [title, setTitle] = useState("");

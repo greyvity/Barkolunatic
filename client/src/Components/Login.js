@@ -1,9 +1,6 @@
 import React from "react";
 
 const Login = (props) => {
-  const clicker = () => {
-    props.change(true);
-  };
   return (
     <div className="App main">
       <form action="/content" className="auth">

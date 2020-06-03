@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteItems } from "../../actions/itemActions";
 import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 
 const Content = ({ post }) => {
   const dispatch = useDispatch();
