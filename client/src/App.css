@@ -1,6 +1,6 @@
 body {
   font-family: "Arial";
-  font-size: 3em;
+  font-size: 16px;
   background-color: rgba(83, 9, 126, 0.397);
 }
 
@@ -10,9 +10,9 @@ body {
 }
 
 .App,
-.App form {
+.App .auth {
   width: 90vw;
-  height: 90vh;
+  height: auto;
   margin: auto;
   text-align: center;
   font-size: 3em;
@@ -20,6 +20,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.main {
+  height: 90vh;
+  overflow: -moz-hidden-unscrollable;
 }
 
 input {
@@ -52,11 +56,63 @@ nav {
 
 nav li {
   list-style: none;
-  border: 10px black;
 }
 
 a {
   text-decoration: none;
   color: black;
   font-size: 30px;
+}
+h3 {
+  font-size: 40px;
+  color: grey;
+}
+
+p {
+  font-size: 20px;
+}
+
+.wrapper,
+.form {
+  background-color: thistle;
+  width: 50vw;
+  border: 1px solid rgba(76, 5, 109, 0.63);
+  border-radius: 20px;
+  font-size: 20px;
+  margin: 30px 0px 0px 0px;
+}
+
+.container {
+  background-color: white;
+  margin: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.container button {
+  width: 40px;
+  height: 40px;
+  margin: 0 20px;
+  border-radius: 10px;
+  border: none;
+  transition: all ease-in-out 0.6s;
+}
+
+.container button:hover {
+  background-color: rgba(219, 12, 53, 0.733);
+}
+.container button:focus {
+  outline: none;
+}
+
+.content * {
+  text-align: left;
+}
+
+.post {
+  position: relative;
+  width: 300px;
+  font-size: 30px;
+  background-color: rgba(60, 255, 1, 0.507);
 }

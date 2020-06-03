@@ -5,11 +5,13 @@ const Login = (props) => {
     props.change(true);
   };
   return (
-    <form action="/">
-      <input type="text" placeholder="email" />
-      <input type="password" placeholder="password" />
-      <input className="submit" type="submit" value="LOGIN" />
-    </form>
+    <div className="App main">
+      <form action="/content" className="auth">
+        <input type="text" placeholder="email" />
+        <input type="password" placeholder="password" />
+        <input className="submit" type="submit" value="LOGIN" />
+      </form>
+    </div>
   );
 };
 
