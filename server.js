@@ -24,8 +24,6 @@ app.use(express.json());
 const apiRouter = require("./routes/api");
 app.use("/api", apiRouter);
 
-PORT = process.argv[2] || 4000;
-
 //Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   //Set static folder
@@ -35,5 +33,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+const PORT = process.argv[2] || 4000;
 
 app.listen(PORT, () => console.log(`Server Up and Running in PORT ${PORT}`));

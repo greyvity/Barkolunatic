@@ -1,9 +1,8 @@
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from "./types";
-import { set } from "mongoose";
 
 export const getItems = () => async (dispatch) => {
   dispatch(setItemsLoading());
-  const res = await fetch("/posts");
+  const res = await fetch("api/posts");
   if (res.ok) {
     const jsonRes = await res.json();
     dispatch({
@@ -19,7 +18,7 @@ export const deleteItems = (id) => async (dispatch) => {
     headers: { "content-type": "application/json" },
     method: "DELETE",
   };
-  const res = await fetch(`/posts/${id}`, options);
+  await fetch(`api/posts/${id}`, options);
   dispatch({
     type: DELETE_ITEM,
     payload: id,
@@ -35,7 +34,7 @@ export const addItems = (post) => async (dispatch) => {
       posts: post,
     }),
   };
-  const res = await fetch("/posts", options);
+  const res = await fetch("api/posts", options);
   if (res.ok) {
     const jsonRes = await res.json();
     dispatch({
