@@ -7,11 +7,8 @@ dotenv.config();
 //Connect to database
 const mongoose = require("mongoose");
 
-const dbConnect =
-  "mongodb+srv://yogesh:Gaming101@cluster0-gjcsz.mongodb.net/test?retryWrites=true&w=majority";
-
 mongoose.connect(
-  dbConnect,
+  process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   () => {
     console.log("Connected to DB");
