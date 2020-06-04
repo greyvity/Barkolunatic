@@ -1,21 +1,52 @@
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM } from "./types";
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from "./types";
+import { set } from "mongoose";
 
-export const getItems = () => {
-  return {
-    type: GET_ITEMS,
-  };
+export const getItems = () => async (dispatch) => {
+  dispatch(setItemsLoading());
+  const res = await fetch("/posts");
+  if (res.ok) {
+    const jsonRes = await res.json();
+    dispatch({
+      type: GET_ITEMS,
+      payload: jsonRes.posts,
+    });
+  }
 };
 
-export const deleteItems = (id) => {
-  return {
+export const deleteItems = (id) => async (dispatch) => {
+  dispatch(setItemsLoading());
+  const options = {
+    headers: { "content-type": "application/json" },
+    method: "DELETE",
+  };
+  const res = await fetch(`/posts/${id}`, options);
+  dispatch({
     type: DELETE_ITEM,
     payload: id,
-  };
+  });
 };
 
-export const addItems = (post) => {
+export const addItems = (post) => async (dispatch) => {
+  dispatch(setItemsLoading());
+  const options = {
+    headers: { "content-type": "application/json" },
+    method: "POST",
+    body: JSON.stringify({
+      posts: post,
+    }),
+  };
+  const res = await fetch("/posts", options);
+  if (res.ok) {
+    const jsonRes = await res.json();
+    dispatch({
+      type: ADD_ITEM,
+      payload: jsonRes.savedPost,
+    });
+  }
+};
+
+export const setItemsLoading = () => {
   return {
-    type: ADD_ITEM,
-    payload: post,
+    type: ITEMS_LOADING,
   };
 };

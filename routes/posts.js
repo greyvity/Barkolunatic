@@ -6,7 +6,7 @@ const verify = require("./tokenVerify");
 const Post = require("../models/posts");
 
 //get all posts
-postsRouter.get("/", verify, async (req, res) => {
+postsRouter.get("/", async (req, res) => {
   try {
     const posts = await Post.find();
     res.status(200).json({ posts });
@@ -15,7 +15,7 @@ postsRouter.get("/", verify, async (req, res) => {
   }
 });
 
-postsRouter.param("postId", verify, async (req, res, next, postId) => {
+postsRouter.param("postId", async (req, res, next, postId) => {
   try {
     req.post = await Post.findOne({ _id: postId });
     next();
@@ -25,12 +25,12 @@ postsRouter.param("postId", verify, async (req, res, next, postId) => {
 });
 
 //get a specific post
-postsRouter.get("/:postId", verify, (req, res) => {
+postsRouter.get("/:postId", (req, res) => {
   res.status(200).json({ post: req.post });
 });
 
 //make a post
-postsRouter.post("/", verify, async (req, res) => {
+postsRouter.post("/", async (req, res) => {
   const post = new Post({
     title: req.body.posts.title,
     description: req.body.posts.description,
@@ -45,7 +45,7 @@ postsRouter.post("/", verify, async (req, res) => {
 });
 
 //edit a post
-postsRouter.patch("/:postId", verify, async (req, res) => {
+postsRouter.patch("/:postId", async (req, res) => {
   try {
     const updatedPost = await Post.updateOne(
       { _id: req.params.postId },
@@ -58,7 +58,7 @@ postsRouter.patch("/:postId", verify, async (req, res) => {
 });
 
 //delete all posts
-postsRouter.delete("/", verify, async (req, res) => {
+postsRouter.delete("/", async (req, res) => {
   try {
     const deleteDetails = await Post.deleteMany();
     res.status(200).json({ deleteDetails });
@@ -68,7 +68,7 @@ postsRouter.delete("/", verify, async (req, res) => {
 });
 
 //delete a specific post
-postsRouter.delete("/:postId", verify, async (req, res) => {
+postsRouter.delete("/:postId", async (req, res) => {
   try {
     const deletedPost = await Post.deleteOne({ _id: req.params.postId });
     if (deletedPost["deletedCount"] !== 0) {

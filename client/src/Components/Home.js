@@ -15,9 +15,9 @@ class Home extends React.Component {
     return (
       <>
         <div className="wrapper">
-          {posts.map((post) => (
-            <Content key={post.id} post={post} />
-          ))}
+          {posts.map((post) => {
+            return <Content key={post._id} post={post} />;
+          })}
         </div>
         <div className="form">
           <AddPost />

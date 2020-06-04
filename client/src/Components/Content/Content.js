@@ -8,7 +8,7 @@ const Content = ({ post }) => {
   const dispatch = useDispatch();
 
   const handledelete = () => {
-    dispatch(deleteItems(post.id));
+    dispatch(deleteItems(post._id));
   };
 
   return (
