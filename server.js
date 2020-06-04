@@ -7,6 +7,9 @@ dotenv.config();
 //Connect to database
 const mongoose = require("mongoose");
 
+process.env["DB_CONNECT"] =
+  "mongodb+srv://yogesh:Gaming101@cluster0-gjcsz.mongodb.net/<dbname>?retryWrites=true&w=majority";
+
 mongoose.connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
