@@ -1,5 +1,7 @@
 const express = require("express");
 const usersRouter = express.Router();
+const auth = require("./tokenVerify");
+const jwt = require("jsonwebtoken");
 
 //import the users collection
 const User = require("../models/users");
@@ -30,7 +32,7 @@ usersRouter.get("/:userId", (req, res) => {
 
 //make a user
 usersRouter.post("/", async (req, res) => {
-  const user = new user({
+  const user = new User({
     title: req.body.users.title,
     description: req.body.users.description,
   });

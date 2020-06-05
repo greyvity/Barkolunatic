@@ -3,6 +3,7 @@ import {
   ADD_ITEM,
   DELETE_ITEM,
   ITEMS_LOADING,
+  FAILED_PROCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -33,6 +34,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    case FAILED_PROCESS:
+      return {
+        ...state,
+        laoding: false,
       };
     default:
       return state;

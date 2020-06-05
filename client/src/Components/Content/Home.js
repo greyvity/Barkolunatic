@@ -1,8 +1,8 @@
 import React from "react";
-import Content from "./Content/Content";
-import AddPost from "./Content/AddPost";
+import Content from "./Content";
+import AddPost from "./AddPost";
 import { connect } from "react-redux";
-import { getItems } from "../actions/itemActions";
+import { getItems } from "../../actions/itemActions";
 import PropTypes from "prop-types";
 
 class Home extends React.Component {

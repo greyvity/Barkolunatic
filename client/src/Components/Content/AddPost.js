@@ -1,48 +1,29 @@
-import React, { useState } from "react";
-import { v4 as uuid } from "uuid";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { addItems } from "../../actions/itemActions";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
+import store from "../../store";
 
-const AddPost = (props) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const dispatch = useDispatch();
-
+const AddPost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const post = { id: uuid(), title, description };
-    dispatch(addItems(post));
-  };
-
-  const titleHandler = (e) => {
-    setTitle(e.target.value);
-  };
-  const descriptionHandler = (e) => {
-    setDescription(e.target.value);
+    const post = {
+      title: e.target.title.value,
+      description: e.target.description.value,
+    };
+    store.dispatch(addItems(post));
   };
 
   return (
-    <form className="addpost">
-      <input
-        type="text"
-        name="title"
-        placeholder="title"
-        onChange={titleHandler}
-      />
+    <form className="addpost" onSubmit={handleSubmit}>
+      <input type="text" name="title" placeholder="title" name="title" />
       <input
         type="text"
         name="description"
         placeholder="description"
-        onChange={descriptionHandler}
+        name="description"
       />
-      <input
-        onClick={handleSubmit}
-        className="post"
-        type="submit"
-        value="ADD NEW POST"
-      />
+      <input className="post" type="submit" value="ADD NEW POST" />
     </form>
   );
 };

@@ -116,3 +116,8 @@ p {
   font-size: 30px;
   background-color: rgba(60, 255, 1, 0.507);
 }
+
+.error-message {
+  font-size: 15px;
+  color: rgba(177, 22, 22, 0.795);
+}

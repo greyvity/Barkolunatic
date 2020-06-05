@@ -1,6 +1,6 @@
 const express = require("express");
 const postsRouter = express.Router();
-const verify = require("./tokenVerify");
+const auth = require("./tokenVerify");
 
 //import the Posts collection
 const Post = require("../models/posts");
@@ -30,11 +30,12 @@ postsRouter.get("/:postId", (req, res) => {
 });
 
 //make a post
-postsRouter.post("/", async (req, res) => {
+postsRouter.post("/", auth, async (req, res) => {
   const post = new Post({
     title: req.body.posts.title,
     description: req.body.posts.description,
   });
+  console.log("posting");
 
   try {
     const savedPost = await post.save();
@@ -45,7 +46,7 @@ postsRouter.post("/", async (req, res) => {
 });
 
 //edit a post
-postsRouter.patch("/:postId", async (req, res) => {
+postsRouter.patch("/:postId", auth, async (req, res) => {
   try {
     const updatedPost = await Post.updateOne(
       { _id: req.params.postId },
@@ -58,7 +59,7 @@ postsRouter.patch("/:postId", async (req, res) => {
 });
 
 //delete all posts
-postsRouter.delete("/", async (req, res) => {
+postsRouter.delete("/", auth, async (req, res) => {
   try {
     const deleteDetails = await Post.deleteMany();
     res.status(200).json({ deleteDetails });
@@ -68,7 +69,7 @@ postsRouter.delete("/", async (req, res) => {
 });
 
 //delete a specific post
-postsRouter.delete("/:postId", async (req, res) => {
+postsRouter.delete("/:postId", auth, async (req, res) => {
   try {
     const deletedPost = await Post.deleteOne({ _id: req.params.postId });
     if (deletedPost["deletedCount"] !== 0) {
